@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using URMS.Areas.Identity.Data;
+using URMS.Models;
 
 namespace URMS.Data
 {
@@ -15,6 +16,7 @@ namespace URMS.Data
             : base(options)
         {
         }
+        public DbSet<GradeReport> GradeReports { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -22,6 +24,11 @@ namespace URMS.Data
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
+
+            builder.Entity<URMSUser>()
+                .HasMany(u => u.GradeReports)
+                .WithOne(g => g.URMSUser);
+
         }
     }
 }
