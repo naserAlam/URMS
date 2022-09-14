@@ -7,13 +7,14 @@ using URMS.Areas.Identity.Data;
 
 namespace URMS.Models
 {
-    public class GradeReport
+    public class Registration
     {
         [Key]
-        public int GradeReportId { get; set; }
+        public int RegistrationId { get; set; }
         public string Semester { get; set; }
         public string URMSUserId { get; set; }
         public URMSUser URMSUser { get; set; }
-        public List<Result> Results { get; set; }
+        public int CourseId { get; set; }
+        public Course Course { get; set; }
     }
 }

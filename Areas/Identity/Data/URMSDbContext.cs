@@ -17,6 +17,12 @@ namespace URMS.Data
         {
         }
         public DbSet<GradeReport> GradeReports { get; set; }
+        public DbSet<Result> Results { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Evaluation> Evaluations { get; set; }
+        public DbSet<Registration> Registrations { get; set; }
+        public DbSet<Complaint> Complaints { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -29,6 +35,39 @@ namespace URMS.Data
                 .HasMany(u => u.GradeReports)
                 .WithOne(g => g.URMSUser);
 
+            builder.Entity<GradeReport>()
+                .HasMany(g => g.Results)
+                .WithOne(r => r.GradeReport);
+
+            builder.Entity<Course>()
+                .HasOne(c => c.Result)
+                .WithOne(r => r.Course)
+                .HasForeignKey<Course>(c => c.CourseId);
+
+            builder.Entity<Department>()
+                .HasMany(d => d.Courses)
+                .WithOne(c => c.Department);
+
+            builder.Entity<Course>()
+                .HasOne(c => c.Evaluation)
+                .WithOne(e => e.Course)
+                .HasForeignKey<Evaluation>(e => e.CourseId);
+
+            builder.Entity<URMSUser>()
+                .HasMany(u => u.Evaluations)
+                .WithOne(e => e.URMSUser);
+
+            builder.Entity<URMSUser>()
+                .HasMany(u => u.Registrations)
+                .WithOne(r => r.URMSUser);
+
+            builder.Entity<Course>()
+                .HasMany(c => c.Registrations)
+                .WithOne(r => r.Course);
+
+            builder.Entity<URMSUser>()
+                .HasMany(u => u.Complaints)
+                .WithOne(c => c.URMSUser);
         }
     }
 }

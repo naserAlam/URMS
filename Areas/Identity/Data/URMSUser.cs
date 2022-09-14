@@ -12,5 +12,9 @@ namespace URMS.Areas.Identity.Data
     {
         public int GradeReportId { get; set; }
         public List<GradeReport> GradeReports { get; set; }
+        public List<Evaluation> Evaluations { get; set; }
+        public List<Registration> Registrations { get; set; }
+        public List<Complaint> Complaints { get; set; }
+
     }
 }
