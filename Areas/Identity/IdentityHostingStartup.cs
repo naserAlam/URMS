@@ -15,20 +15,20 @@ namespace URMS.Areas.Identity
     {
         public void Configure(IWebHostBuilder builder)
         {
-            builder.ConfigureServices((context, services) => {
-                //services.AddDbContext<URMSDbContext>(options =>
-                //    options.UseSqlServer(
-                //        context.Configuration.GetConnectionString("URMSDbContextConnection")));
+            //builder.ConfigureServices((context, services) => {
+            //    //services.AddDbContext<URMSDbContext>(options =>
+            //    //    options.UseSqlServer(
+            //    //        context.Configuration.GetConnectionString("URMSDbContextConnection")));
 
-                services.AddDefaultIdentity<URMSUser>(options => 
-                {
-                    options.SignIn.RequireConfirmedAccount = false;
-                    options.Password.RequireLowercase = false;
-                    options.Password.RequireUppercase = false;
-                    options.Password.RequireNonAlphanumeric = false;
-                })
-                    .AddEntityFrameworkStores<URMSDbContext>();
-            });
+            //    services.AddDefaultIdentity<URMSUser>(options => 
+            //    {
+            //        options.SignIn.RequireConfirmedAccount = false;
+            //        options.Password.RequireLowercase = false;
+            //        options.Password.RequireUppercase = false;
+            //        options.Password.RequireNonAlphanumeric = false;
+            //    })
+            //        .AddEntityFrameworkStores<URMSDbContext>();
+            //});
         }
     }
 }

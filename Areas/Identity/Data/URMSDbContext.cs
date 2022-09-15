@@ -40,18 +40,16 @@ namespace URMS.Data
                 .WithOne(r => r.GradeReport);
 
             builder.Entity<Course>()
-                .HasOne(c => c.Result)
-                .WithOne(r => r.Course)
-                .HasForeignKey<Course>(c => c.CourseId);
+                .HasMany(c => c.Results)
+                .WithOne(r => r.Course);
 
             builder.Entity<Department>()
                 .HasMany(d => d.Courses)
                 .WithOne(c => c.Department);
 
             builder.Entity<Course>()
-                .HasOne(c => c.Evaluation)
-                .WithOne(e => e.Course)
-                .HasForeignKey<Evaluation>(e => e.CourseId);
+                .HasMany(c => c.Evaluations)
+                .WithOne(e => e.Course);
 
             builder.Entity<URMSUser>()
                 .HasMany(u => u.Evaluations)

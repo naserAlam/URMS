@@ -13,12 +13,10 @@ namespace URMS.Models
         public string Code { get; set; }
         public string Title { get; set; }
         public string Type { get; set; }
-        public int ResultId { get; set; }
-        public Result Result { get; set; }
+        public List<Result> Results { get; set; }
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
-        public int EvaluationId { get; set; }
-        public Evaluation Evaluation { get; set; }
+        public List<Evaluation> Evaluations { get; set; }
         public List<Registration> Registrations { get; set; }
     }
 }

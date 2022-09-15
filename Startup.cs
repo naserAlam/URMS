@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using URMS.Areas.Identity.Data;
 using URMS.Data;
 
 namespace URMS
@@ -28,6 +29,16 @@ namespace URMS
             services.AddDbContext<URMSDbContext>(options =>
                     options.UseSqlServer(
                         Configuration.GetConnectionString("URMSDbContextConnection")));
+
+            services.AddDefaultIdentity<URMSUser>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+            })
+                    .AddEntityFrameworkStores<URMSDbContext>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
